@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">
+        http://asp.net/mvc</a>.
+</p>
+<p>
+    <table style="width: 100%">
+        <tr>
+            <td>
+                @Html.Label("First name:")
+            </td>
+            <td>
+                <input id="txtFirstName" type="text" data-bind="value:firstName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Last name:")
+            </td>
+            <td>
+                <input id="txtLastName" type="text" data-bind="value:lastName" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Label("Full name:")
+            </td>
+            <td>
+                <h2>
+                    Hello, <span data-bind="text:fullName"></span>
+                </h2>
+            </td>
+        </tr>
+    </table>
+</p>
+<script language="javascript" type="text/javascript">
+    var viewModel = function (first, last) {
+        this.firstName = ko.observable(first);
+        this.lastName = ko.observable(last);
+        this.fullName = ko.computed(function () {
+            return this.firstName() + "" + this.lastName();
+        }, this)
+    }
+
+    ko.applyBindings(new viewModel("David", "Dai"));
+</script>
